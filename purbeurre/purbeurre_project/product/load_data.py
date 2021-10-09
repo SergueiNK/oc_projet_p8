@@ -8,7 +8,7 @@ url_request = 'https://fr.openfoodfacts.org/cgi/search.pl'
 products_params = {
     "action": "process",
     "sort_by": "unique_scans_n",
-    "page_size": 500,
+    "page_size": 5,
     "json": 1,
     "page": 1,
     "fields": "pnns_groups_1,generic_name_fr,"
