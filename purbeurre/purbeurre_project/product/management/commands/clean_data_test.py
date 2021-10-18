@@ -1,7 +1,7 @@
 #!/usr/bin/python3.9
 # -*- coding:utf-8 -*-
 from django.core.management.base import BaseCommand, CommandError
-#from product.models import Product as product_info
+#from product.models import Product as Poll
 import requests
 import json
 
@@ -65,29 +65,13 @@ class Command(BaseCommand):
         else:
             return False
 
-    #def get_verify_product(self):
-        #extract_product={}
-        #for product in self.api_get_products():
-            #if self.verify_product(product):
-                #extract_product.update(product)
-                #print(extract_product)
-
 
     def handle(self, *args, **options):
-        extract_product={}
+        extract_product=[]
         for product in self.api_get_products():
             if self.verify_product(product):
                 try:
-                    extract_product.update(product)
+                    extract_product.append(product)
                     print(extract_product)
-                    print(type(extract_product))
-                    #return extract_product
                 except:
                     CommandError('Product does not exist')
-
-    #def insert_data(self, product):
-        #for product in handle():
-            #pass
-
-
-
