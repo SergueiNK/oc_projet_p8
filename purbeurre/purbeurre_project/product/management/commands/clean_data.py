@@ -1,7 +1,7 @@
 #!/usr/bin/python3.9
 # -*- coding:utf-8 -*-
 from django.core.management.base import BaseCommand, CommandError
-#from product.models import Product as product_info
+from product.models import Category, Product, Favorite
 import requests
 import json
 
@@ -80,9 +80,24 @@ class Command(BaseCommand):
                 try:
                     extract_product.update(product)
                     print(extract_product)
-                    print(type(extract_product))
-                    #return extract_product
-                except:
+                    #print(type(extract_product.get('pnns_groups_1')))
+                    #category_data = Category.objects.create(category_name = extract_product.get('pnns_groups_1'))
+                    category_results = Category.objects.filter(category_name = extract_product.get('pnns_groups_1'))
+                    
+                    if category_results.exists():
+
+                        product_data = Product(
+                            code_product = extract_product.get('code'),
+                            product_name = extract_product.get('generic_name_fr'),
+                            url = extract_product.get('url'),
+                            nutrition_grade = extract_product.get('nutrition_grade_fr'),
+                            image_url = extract_product.get('image_url'),
+                            image_nutrition_url = extract_product.get('image_nutrition_url'),
+                            category_fk = category_results[0],
+                        )
+                        product_data.save()                  
+                except Exception as e:
+                    print(e)
                     CommandError('Product does not exist')
 
     #def insert_data(self, product):

@@ -12,13 +12,14 @@ class Category(models.Model):
     #code_products_fk = models.ForeignKey(Product, on_delete=models.PROTECT)
 
     def __str__(self):
-        return  (f"{self.pnns_groups_1}"
+        return  (f"{self.category_name}"
                 )
 
                 
 class Product(models.Model):
     #code_products = models.IntegerField.primary_key("code of product", primary_key=True)
     #pnns_groups_1 = models.CharField(_("category"), max_length=500)
+    code_product = models.IntegerField("code of product", unique=True)
     product_name = models.CharField("name of product", max_length=100)
     url = models.CharField("url of product", max_length=100)
     nutrition_grade = models.CharField("nutrition grade of product", max_length=100)
@@ -28,11 +29,12 @@ class Product(models.Model):
     
     def __str__(self):
         # Pour transformer et retourner l'objet de façan lisible
-        return (f"{self.pnns_groups_1}"
-                f"{self.generic_name_fr}"
+        return (f"{self.product_name}"
                 f"{self.url}"
+                f"{self.nutrition_grade}"
                 f"{self.image_url}"
                 f"{self.image_nutrition_url}"
+                f"{self.category_fk}"
                 )
 
 
