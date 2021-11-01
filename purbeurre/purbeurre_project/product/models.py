@@ -19,17 +19,18 @@ class Category(models.Model):
 class Product(models.Model):
     #code_products = models.IntegerField.primary_key("code of product", primary_key=True)
     #pnns_groups_1 = models.CharField(_("category"), max_length=500)
-    code_product = models.IntegerField("code of product", unique=True)
-    product_name = models.CharField("name of product", max_length=100)
-    url = models.CharField("url of product", max_length=100)
-    nutrition_grade = models.CharField("nutrition grade of product", max_length=100)
+    code_product = models.CharField("code of product", unique=True, max_length=500)
+    product_name = models.CharField("name of product", max_length=500)
+    url = models.CharField("url of product", max_length=500)
+    nutrition_grade = models.CharField("nutrition grade of product", max_length=500)
     image_url = models.URLField()
     image_nutrition_url = models.URLField()
     category_fk = models.ForeignKey(Category, on_delete=models.PROTECT, default="0")
     
     def __str__(self):
         # Pour transformer et retourner l'objet de façan lisible
-        return (f"{self.product_name}"
+        return (f"{self.code_product}"
+                f"{self.product_name}"
                 f"{self.url}"
                 f"{self.nutrition_grade}"
                 f"{self.image_url}"

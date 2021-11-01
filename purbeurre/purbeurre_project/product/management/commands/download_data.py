@@ -1,7 +1,7 @@
 #!/usr/bin/python3.9
 # -*- coding:utf-8 -*-
 from django.core.management.base import BaseCommand, CommandError
-#from product.models import Product as Poll
+from product.models import Category, Product, Favorite
 import requests
 import json
 
@@ -14,7 +14,7 @@ class Command(BaseCommand):
         self.products_params = {
             "action": "process",
             "sort_by": "unique_scans_n",
-            "page_size": 5,
+            "page_size": 500,
             "json": 1,
             "page": 1,
             "fields": "pnns_groups_1,generic_name_fr,"
@@ -65,13 +65,53 @@ class Command(BaseCommand):
         else:
             return False
 
+    #def get_verify_product(self):
+        #extract_product={}
+        #for product in self.api_get_products():
+            #if self.verify_product(product):
+                #extract_product.update(product)
+                #print(extract_product)
+
 
     def handle(self, *args, **options):
-        extract_product=[]
+        extract_product={}
         for product in self.api_get_products():
             if self.verify_product(product):
                 try:
-                    extract_product.append(product)
-                    print(extract_product)
-                except:
+                    extract_product.update(product)
+                    #print(extract_product)
+                    #print(type(extract_product.get('pnns_groups_1')))
+                    #prémiere étape permet de créer l'objet dans la base de donnée
+                    #prémiere étape permet de vérifier si le pnns groupe existe 
+                    try:
+                        category_data = Category.objects.get(category_name = extract_product.get('pnns_groups_1'))
+
+                    except Exception as e:
+                        category_data = Category.objects.create(category_name = extract_product.get('pnns_groups_1'))
+
+                    #deuxiéme étape permet de selectionner cette objét
+                        #category_results = Category.objects.filter(category_name = extract_product.get('pnns_groups_1'))
+                    
+                    product_data = Product.objects.create(
+                        code_product = extract_product.get('code'),
+                        product_name = extract_product.get('generic_name_fr'),
+                        url = extract_product.get('url'),
+                        nutrition_grade = extract_product.get('nutrition_grade_fr'),
+                        image_url = extract_product.get('image_url'),
+                        image_nutrition_url = extract_product.get('image_nutrition_url'),
+                        category_fk = category_data,
+                    )
+                            
+
+                except Exception as e:
+                    print(e)
+                    print(product_data)
+                    #print(product_data)
                     CommandError('Product does not exist')
+
+    #def insert_data(self, product):
+        #for product in handle():
+            #pass
+
+
+

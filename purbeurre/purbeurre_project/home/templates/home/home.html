@@ -15,10 +15,13 @@
                 <div class="col-lg-8 align-self-baseline">
                     <p class="text-white-75 mb-5">Trouvez un produit de substitution pour ceux que vous consommez tous les jours </p>
                     <div class="input-group">
-                        <label class="form-label" for="userText"></label>
-                        <input type="text" id="userText" class="form-control" name="userText"
-                            placeholder="Tappez exemple nutella">
-                        <input class="btn btn-primary" type="submit" value="Chercher">
+                        <label class="form-label" for="userText">
+                          <form method="GET" action = "{% url 'products:product' %}">
+                              <input type="text" name = "user_product_request" id="userText" class="form-control" name="userText"
+                                  placeholder="Tappez exemple nutella">
+                              <input class="btn btn-primary" type="submit" value="Chercher">
+                          </form>
+                        </label>     
                     </div>
                 </div>
             </div>

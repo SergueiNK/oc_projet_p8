@@ -35,10 +35,11 @@
                         <span class="ml-2" style="border-bottom: solid 3px #C45525;">Pur Beurre
                             <ul class="navbar-nav ms-auto my-2 my-lg-0">
 
-                                <div class="input-group">
-                                    <label class="form-label" for="userText"></label>
-                                    <input type="text" id="userText" class="form-control" name="userText"
-                                        placeholder="Tappez exemple nutella">
+                                <div class="container">
+                                    <form method="GET" action = "{% url 'products:product' %}">
+                                        <input type = "text" name = "user_product_request" placeholder="Chercher..." class = "text-center">
+                                        <button type = "submit" class = "btn btn-primary">Chercher produit</button>
+                                      </form>
                                 </div>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#services">
