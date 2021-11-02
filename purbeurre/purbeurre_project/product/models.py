@@ -6,19 +6,15 @@ from django.contrib.auth.models import User
 
 
 class Category(models.Model):
-    #code_categories = models.IntegerField.primary_key("code of category", primary_key=True)
-    category_name = models.CharField(_("category name"), unique=True, max_length=500)
-    #Clés étrangere est sur le code_products.Product en cas de son suppression sauvegarder le model
-    #code_products_fk = models.ForeignKey(Product, on_delete=models.PROTECT)
 
+    category_name = models.CharField(_("category name"), unique=True, max_length=500)
     def __str__(self):
         return  (f"{self.category_name}"
                 )
 
                 
 class Product(models.Model):
-    #code_products = models.IntegerField.primary_key("code of product", primary_key=True)
-    #pnns_groups_1 = models.CharField(_("category"), max_length=500)
+
     code_product = models.CharField("code of product", unique=True, max_length=500)
     product_name = models.CharField("name of product", max_length=500)
     url = models.CharField("url of product", max_length=500)
@@ -28,7 +24,7 @@ class Product(models.Model):
     category_fk = models.ForeignKey(Category, on_delete=models.PROTECT, default="0")
     
     def __str__(self):
-        # Pour transformer et retourner l'objet de façan lisible
+        
         return (f"{self.code_product}"
                 f"{self.product_name}"
                 f"{self.url}"

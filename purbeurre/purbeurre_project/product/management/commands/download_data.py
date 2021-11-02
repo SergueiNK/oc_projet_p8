@@ -17,7 +17,7 @@ class Command(BaseCommand):
             "page_size": 500,
             "json": 1,
             "page": 1,
-            "fields": "pnns_groups_1,generic_name_fr,"
+            "fields": "pnns_groups_1,product_name,"
                     "code,url,nutrition_grade_fr,image_url,image_nutrition_url"
         }
 
@@ -37,9 +37,9 @@ class Command(BaseCommand):
 
     def verify_product(self, product):
         """ Check and sort the API before insert in tables """
-        if product.get('generic_name_fr') \
-                and product.get('generic_name_fr') != 'unknown' \
-                and product.get('generic_name_fr') != '' \
+        if product.get('product_name') \
+                and product.get('product_name') != 'unknown' \
+                and product.get('product_name') != '' \
                 and product.get('code') \
                 and product.get('code') != 'unknown' \
                 and product.get('code') != '' \
@@ -94,7 +94,7 @@ class Command(BaseCommand):
                     
                     product_data = Product.objects.create(
                         code_product = extract_product.get('code'),
-                        product_name = extract_product.get('generic_name_fr'),
+                        product_name = extract_product.get('product_name'),
                         url = extract_product.get('url'),
                         nutrition_grade = extract_product.get('nutrition_grade_fr'),
                         image_url = extract_product.get('image_url'),

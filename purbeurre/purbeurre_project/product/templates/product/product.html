@@ -20,14 +20,21 @@
                             <div class="card">
                               <img class="card-img-top" src="{{ product.image_url }}" alt="Card image cap">
                               <div class="card-body text-center">
-                                <p class="card-title">{{ product.product_name }}</p>
+                                <p class="card-title">{{product.product_name }}</p>
                                 <hr>
                                 <p class="card-text">{{ product.nutrition_grade }}</p>
                                 <a href="/product/{{product.id}}"
                                 ><input
                                   type="submit"
-                                  value="Sauvegarder dans les favoris"
+                                  value="Ajouter favoris"
                                   class="btn btn-danger btn-sm"
+                                  type="button"
+                              /></a>
+                                <a href="/product/{{product.id}}"
+                                ><input
+                                  type="submit"
+                                  value="Detail produit"
+                                  class="btn btn-info btn-sm"
                                   type="button"
                               /></a>
                               </div>
