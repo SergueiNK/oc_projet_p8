@@ -17,6 +17,7 @@ class Product(models.Model):
 
     code_product = models.CharField("code of product", unique=True, max_length=500)
     product_name = models.CharField("name of product", max_length=500)
+    product_description = models.CharField("description of product", max_length=500)
     url = models.CharField("url of product", max_length=500)
     nutrition_grade = models.CharField("nutrition grade of product", max_length=500)
     image_url = models.URLField()
@@ -27,6 +28,7 @@ class Product(models.Model):
         
         return (f"{self.code_product}"
                 f"{self.product_name}"
+                f"{self.product_description}"
                 f"{self.url}"
                 f"{self.nutrition_grade}"
                 f"{self.image_url}"

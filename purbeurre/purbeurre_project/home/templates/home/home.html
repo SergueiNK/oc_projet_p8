@@ -13,16 +13,13 @@
                     <hr class="divider" />
                 </div>
                 <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-75 mb-5">Trouvez un produit de substitution pour ceux que vous consommez tous les jours </p>
+                  <p class="text-white-75 mb-5">Trouvez un produit de substitution pour ceux que vous consommez tous les jours </p>
+                  <form method="GET" action = "{% url 'products:product' %}">
                     <div class="input-group">
-                        <label class="form-label" for="userText">
-                          <form method="GET" action = "{% url 'products:product' %}">
-                              <input type="text" name = "user_product_request" id="userText" class="form-control" name="userText"
-                                  placeholder="Tappez exemple nutella">
-                              <input class="btn btn-primary" type="submit" value="Chercher">
-                          </form>
-                        </label>     
+                      <input id="userText" class="form-control" type="text" name="user_product_request" placeholder="Tappez exemple nutella" aria-label="Search">
+                      <button class="btn btn-outline-primary" type="submit">Chercher...</button>
                     </div>
+                  </form>
                 </div>
             </div>
         </div>
@@ -32,7 +29,7 @@
 
     {% block content %}
     <!-- About-->
-    <section class="page-section bg-primary" id="about">
+    <section class="page-section bg-primary py-3" id="about">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-lg-8 text-center">
@@ -44,8 +41,8 @@
                         rencontrés dans notre excellent restaurant Ratatouille.
                     </p>
                     <div class="row story">
-                        <div id="Colette" class="col-md-6">
-                          <p class="text-black-50 mb-4 text-justify">
+                        <div id="Colette" class="col-md-6 d-flex flex-column justify-content-between">
+                          <p class="text-black-50 mb-4 text-start">
                             <strong class="text-dark">Colette Tatou :</strong> "Nous aimons
                             tous manger, surtout en France ! Personnellement, une baguette
                             fraîche, du bon fromage de chèvre et un bon vin rouge me suffisent
@@ -56,13 +53,13 @@
                             bons produits du terroir Et souvent pour le même prix !"
                           </p>
                           <img
-                            class="img-fluid col-lg-6 col-12 order-lg-3 story-image"
+                            class="img-fluid order-lg-3 story-image"
                             src="{% static 'dist/assets/img/colette-7.jpg' %}"
                             alt="colette image"
                           />
                         </div>
-                        <div id="Remy" class="col-md-6">
-                          <p class="text-black-50 mb-4 text-justify">
+                        <div id="Remy" class="col-md-6 d-flex flex-column justify-content-between">
+                          <p class="text-black-50 mb-4 text-start">
                             <strong class="text-dark">Remy :</strong> "Pour ma part je me
                             rendais déjà dans bien des magasins car j'aime beaucoup me
                             balader, surtout dans les caves et les cuisines. Je connaissais
@@ -73,7 +70,7 @@
                             de Pur Beurre était née !"
                           </p>
                           <img
-                            class="col-lg-6 col-12 order-lg-4 mt-4 story-image"
+                            class="order-lg-4 mt-4 story-image"
                             src="{% static 'dist/assets/img/remy-9.jpg' %}"
                             alt="remy image"
                           />
@@ -85,7 +82,7 @@
     </section>
     
     <!-- contact -->
-    <section class="page-section" id="contact">
+    <section class="page-section py-3" id="contact">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-lg-8 text-center">
@@ -95,19 +92,23 @@
                     </p>
                     <div class="row story">
                         <div id="Colette" class="col-md-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-telephone-outbound" viewBox="0 0 16 16">
+                            <a href="tel:0648152385">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-telephone-outbound" viewBox="0 0 16 16">
                                 <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zM11 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-4.146 4.147a.5.5 0 0 1-.708-.708L14.293 1H11.5a.5.5 0 0 1-.5-.5z"/>
                               </svg>
+                            </a>
                           <p class="text-black-50 mb-4 text-justify">
                             <strong class="text-dark">00000000000</strong> 
                           </p>
                         </div>
                         <div id="Remy" class="col-md-6">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-envelope-open" viewBox="0 0 16 16">
-                            <path d="M8.47 1.318a1 1 0 0 0-.94 0l-6 3.2A1 1 0 0 0 1 5.4v.818l5.724 3.465L8 8.917l1.276.766L15 6.218V5.4a1 1 0 0 0-.53-.882l-6-3.2zM15 7.388l-4.754 2.877L15 13.117v-5.73zm-.035 6.874L8 10.083l-6.965 4.18A1 1 0 0 0 2 15h12a1 1 0 0 0 .965-.738zM1 13.117l4.754-2.852L1 7.387v5.73zM7.059.435a2 2 0 0 1 1.882 0l6 3.2A2 2 0 0 1 16 5.4V14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5.4a2 2 0 0 1 1.059-1.765l6-3.2z"/>
-                          </svg>  
+                          <a href="mailto:p.dupond@example.com" class="text-dark">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-envelope-open" viewBox="0 0 16 16">
+                              <path d="M8.47 1.318a1 1 0 0 0-.94 0l-6 3.2A1 1 0 0 0 1 5.4v.818l5.724 3.465L8 8.917l1.276.766L15 6.218V5.4a1 1 0 0 0-.53-.882l-6-3.2zM15 7.388l-4.754 2.877L15 13.117v-5.73zm-.035 6.874L8 10.083l-6.965 4.18A1 1 0 0 0 2 15h12a1 1 0 0 0 .965-.738zM1 13.117l4.754-2.852L1 7.387v5.73zM7.059.435a2 2 0 0 1 1.882 0l6 3.2A2 2 0 0 1 16 5.4V14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5.4a2 2 0 0 1 1.059-1.765l6-3.2z"/>
+                            </svg>
+                          </a> 
                           <p class="text-black-50 mb-4 text-justify">
-                            <strong class="text-dark">mail@mail.com</strong> 
+                            <strong>Mail</strong>
                           </p>
                         </div>
                     </div>      

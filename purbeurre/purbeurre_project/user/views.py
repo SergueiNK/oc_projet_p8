@@ -19,7 +19,7 @@ def registerPage(request):
             form.save()
             user = form.cleaned_data.get('username')
             messages.success(request, 'Le compte a été crée pour' + user)
-            return redirect('user')
+            return redirect('users:user')
         else:
             messages.info(request, 'le le le')    
 
@@ -36,7 +36,7 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('user')
+            return redirect('users:user')
         else:
             messages.info(request, 'Le nom d\'utilisateur OU le mot de passe sont incorrectes')
 

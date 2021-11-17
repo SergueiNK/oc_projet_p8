@@ -1,0 +1,45 @@
+.product-banner {
+    padding: 5em;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+    text-align: center;
+    text-transform: uppercase;
+    background-image: url(https://images.openfoodfacts.org/images/products/325/149/033/2080/front_fr.105.400.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1 {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 3em;
+    }
+}
+.product {
+    position: relative;
+}
+.score {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background-color: white;
+    border-radius: 100%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+.score-a {
+    background-color: green;
+    color: white;
+}
+.score-b {
+    background-color: orange;
+    color: white;
+}

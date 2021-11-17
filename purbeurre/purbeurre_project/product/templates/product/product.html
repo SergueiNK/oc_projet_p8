@@ -11,32 +11,23 @@
 </head>
 <body>
 	<section class="page-section bg-primary" id="about">
-        <div class="container px-4 px-lg-5">
+        <div class="container px-4 p-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-lg-8 text-center">
                     <div class="row">
                         {% for product in all_products %}
-                          <div class="col-md-4 col-sm-6 col-lg-3">
-                            <div class="card">
+                          <div class="col-md-4 col-sm-6">
+                            <div class="card product">
                               <img class="card-img-top" src="{{ product.image_url }}" alt="Card image cap">
+                              <span class="score score-{{ product.nutrition_grade }}">{{ product.nutrition_grade }}</span>
+                              <div class="card-header">
+                                <p class="card-title">{{ product.product_name }}</p>
+                              </div>
                               <div class="card-body text-center">
-                                <p class="card-title">{{product.product_name }}</p>
-                                <hr>
-                                <p class="card-text">{{ product.nutrition_grade }}</p>
-                                <a href="/product/{{product.id}}"
-                                ><input
-                                  type="submit"
-                                  value="Ajouter favoris"
-                                  class="btn btn-danger btn-sm"
-                                  type="button"
-                              /></a>
-                                <a href="/product/{{product.id}}"
-                                ><input
-                                  type="submit"
-                                  value="Detail produit"
-                                  class="btn btn-info btn-sm"
-                                  type="button"
-                              /></a>
+                                <a href="product/{{ product.id }}"
+                                class="btn btn-primary">Sauvegarder</a>
+                                <a href="{% url 'products:detail' product.id %}"
+                                class="btn btn-info">Detail produit</a>
                               </div>
                             </div>
                             <br><br><br>
