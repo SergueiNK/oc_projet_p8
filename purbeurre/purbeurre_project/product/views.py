@@ -33,3 +33,8 @@ def product_detail(request, id):
     
     return render(request, 'product/product_detail.html', {'product_data': product_data})
 
+def save_product():
+    pass
+
+    #return render (request, 'product/saved_product.html', {})
+

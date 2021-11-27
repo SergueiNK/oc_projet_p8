@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
-
+from .models import AuthUser
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib import messages
@@ -46,4 +46,12 @@ def loginPage(request):
 # Need to finalise the navbar
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('users:login')
+
+def getUser(request, id):
+    user_data={}
+
+    if request.method == 'GET':
+        user_data=AuthUser.objects.get(id=id)
+        print(user)
+        return render(request, 'user/user.html', {'user_data': user_data})
