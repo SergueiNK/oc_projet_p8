@@ -7,11 +7,24 @@ Develop branch develop. Thank to change if you want to see the progress work
 
 Clone the repo
 
-git clone 
+git clone: https://github.com/SergueiNK/oc_projet_p8.git
+
+Need to install the packages for linux for compilation: 
+libpq-dev
+sudo apt install libpq-dev
+
+Need to install python for linux:
+sudo apt install python3-dev
 
 Virtual environment creation:
-
 python3 -m venv .venv
+
+Need to install PostgresSql: 
+pip install psycopg2
+
+Need to install the packages for linux for compilation: 
+libpq-dev
+sudo apt install libpq-dev
 
 Dependencies installation
 
@@ -21,7 +34,7 @@ LINUX
 
 WINDOBS
 
-cd .venv/Scripts/
+cd .env/Scripts/
 
 pip install -r ../../requirements.txt
 
@@ -29,10 +42,10 @@ Activation virtual env
 
 LINUX
 
-source venv/scripts/activate
+source .venv/bin/activate
 
 WINDOWS
 
 env\Scripts\activate.bat
 
-For launch the program on your local serveur : python manage.py runserver
+For launch the program on your local serveur : cd purbeurre/purbeurre_project && python manage.py runserver
