@@ -1,51 +1,49 @@
 # oc_projet_p8
+
 Créez une plateforme pour amateurs de Nutella
 
-About that Readme
+## About that Readme
 
-Develop branch develop. Thank to change if you want to see the progress work
+Develop into branch develop. Thank to change if you want to see the progress work
 
-Clone the repo
+## How to build and run the HTTP server
 
-git clone: https://github.com/SergueiNK/oc_projet_p8.git
+### Clone the repo
 
-Need to install the packages for linux for compilation: 
-libpq-dev
-sudo apt install libpq-dev
+`$ git clone: https://github.com/SergueiNK/oc_projet_p8.git`  
 
-Need to install python for linux:
-sudo apt install python3-dev
+### Install the system requirements (for Debian like)
 
-Virtual environment creation:
-python3 -m venv .venv
+` $ sudo apt install libpq python3`  
 
-Need to install PostgresSql: 
-pip install psycopg2
+### Install PostgreSQL database adapter for the Python
 
-Need to install the packages for linux for compilation: 
-libpq-dev
-sudo apt install libpq-dev
+`$ pip install psycopg2` 
 
-Dependencies installation
+### Install Python requirements
 
-LINUX
+`$ .venv/bin/pip install -r requirements.txt`  
 
-.venv/bin/pip install -r requirements.txt
+### Create the virtual environment
 
-WINDOBS
+`$ python3 -m venv .venv`  
 
-cd .env/Scripts/
+### Activate virtual environement  
 
-pip install -r ../../requirements.txt
+`$ source .venv/bin/activate`
 
-Activation virtual env
+### Run server
 
-LINUX
+`$ cd purbeurre/purbeurre_project && python manage.py runserver`  
 
-source .venv/bin/activate
+## How to build and run statics
 
-WINDOWS
+Static files are into purbeurre/purbeurre_project/static/  
 
-env\Scripts\activate.bat
+### Install dependencies
 
-For launch the program on your local serveur : cd purbeurre/purbeurre_project && python manage.py runserver
+`$ npm run install .`
+
+### Build statis
+
+`$ npm run build`  
