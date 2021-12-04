@@ -1,74 +1,83 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-    {% block head %}
-        <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-            <meta name="description" content="" />
-            <meta name="author" content="" />
+{% block head %}
 
-            <title>{% block title %}Pur Beurre{% endblock title %}</title>
-            <!-- Favicon-->
-            <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-            <!-- Bootstrap Icons-->
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-            <!-- Google fonts-->
-            <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-            <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-            <!-- SimpleLightbox plugin CSS-->
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-            <!-- Core theme CSS (includes Bootstrap)-->
-            <link href="{% static 'dist/css/styles.css' %}" rel="stylesheet" />
-        </head>
-        <body id="page-top">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>{% block title %}Pur Beurre{% endblock title %}</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap Icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
+        rel="stylesheet" type="text/css" />
+    <!-- SimpleLightbox plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'dist/css/styles.css' %}" rel="stylesheet" />
+</head>
+
+<body id="page-top">
     {% endblock head %}
-    
-        <!-- Navigation-->
-        {% block nav %}
-        <nav class="navbar navbar-light bg-light navbar-expand-lg">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/#page-top">
-                    <img src="{% static 'dist/assets/img/logo_pur_beurre.png' %}" alt="" width="55" height="35" class="d-inline-block align-text-top">
-                    <span class="ml-2" style="border-bottom: solid 3px #C45525;">Pur Beurre</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div id="navbar-header" class="collapse navbar-collapse justify-content-end">
-                    <ul class="navbar-nav align-items-lg-center">
-                        {% if request.user.is_authenticated %}
-                        <li class="d-flex nav-item">
-                            <!--Faire la recherche pour le SRCF token en intégrant le if-->
-                            <a class="nav-link" href="{% url 'users:logout' %}">
-                                <img src="{% static 'dist/assets/img/menu.png' %}" alt="" width="50" height="50" class="d-inline-block align-text-top">
-                            </a>
-                        </li>
-                        <li class="d-flex nav-item">
-                            <!--Faire la recherche pour le SRCF token en intégrant le if-->
-                            <a class="nav-link" href="{% url 'users:logout' %}">
-                                <img src="{% static 'dist/assets/img/carotte.png' %}" alt="" width="55" height="50" class="d-inline-block align-text-top">
-                            </a>
-                        </li>
-                        {% else %}
-                        <li class="d-flex nav-item">
-                            <!--Faire la recherche pour le SRCF token en intégrant le if-->
-                            <a class="nav-link" href="{% url 'users:login' %}">
-                                <img src="{% static 'dist/assets/img/compte.png' %}" alt="" width="55" height="50" class="d-inline-block align-text-top">
-                            </a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                    <form method="GET" action = "{% url 'products:product' %}">
-                        <div class="input-group">
-                            <input class="form-control" type="search" placeholder="Chercher..." aria-label="Search">
-                            <button class="btn btn-outline-primary" type="submit">Chercher...</button>
-                        </div>
-                    </form>
-                </div>
+
+    <!-- Navigation-->
+    {% block nav %}
+    <nav class="navbar navbar-light bg-light navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/#page-top">
+                <img src="{% static 'dist/assets/img/logo_pur_beurre.png' %}" alt="" width="55" height="35"
+                    class="d-inline-block align-text-top">
+                <span class="ml-2" style="border-bottom: solid 3px #C45525;">Pur Beurre</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-header"
+                aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbar-header" class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav align-items-lg-center">
+                    {% if request.user.is_authenticated %}
+                    <li class="d-flex nav-item">
+                        <!--Faire la recherche pour le SRCF token en intégrant le if-->
+                        <a class="nav-link" href="{% url 'users:logout' %}">
+                            <img src="{% static 'dist/assets/img/menu.png' %}" alt="" width="50" height="50"
+                                class="d-inline-block align-text-top">
+                        </a>
+                    </li>
+                    <li class="d-flex nav-item">
+                        <!--Faire la recherche pour le SRCF token en intégrant le if-->
+                        <a class="nav-link" href="{% url 'users:logout' %}">
+                            <img src="{% static 'dist/assets/img/carotte.png' %}" alt="" width="55" height="50"
+                                class="d-inline-block align-text-top">
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="d-flex nav-item">
+                        <!--Faire la recherche pour le SRCF token en intégrant le if-->
+                        <a class="nav-link" href="{% url 'users:login' %}">
+                            <img src="{% static 'dist/assets/img/compte.png' %}" alt="" width="55" height="50"
+                                class="d-inline-block align-text-top">
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <form method="GET" action="{% url 'products:product' %}">
+                    <div class="input-group">
+                        <input id="userText" class="form-control" type="text" name="user_product_request"
+                            placeholder="Tappez exemple nutella" aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">Chercher...</button>
+                    </div>
+                </form>
             </div>
-        </nav>
-            <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        </div>
+    </nav>
+    <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
                 <div class="container px-4 px-lg-5">
                     <a class="navbar-brand" href="#page-top"> 
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -95,35 +104,38 @@
                     </div>
                 </div>
             </nav> -->
-        {% endblock nav %}
-        
-        <!-- Masthead-->
-        {% block header %}
-            
-        {% endblock header %}
-        
-        {% block content %}
-                
-        {% endblock content %}
-        
-        <!-- Footer-->
-        {% block footer %} 
-            <footer class="bg-light py-5">
-                <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2021 - Company Name</div></div>
-            </footer>
-        {% endblock footer %}
-        {% block js %} 
-            <!-- Bootstrap core JS-->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-            <!-- SimpleLightbox plugin JS-->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-            <!-- Core theme JS-->
-            <script src="{% static 'dist/js/scripts.js' %}"></script>
-            <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-            <!-- * *                               SB Forms JS                               * *-->
-            <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-            <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-            <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        {% endblock js %}
-    </body>
+    {% endblock nav %}
+
+    <!-- Masthead-->
+    {% block header %}
+
+    {% endblock header %}
+
+    {% block content %}
+
+    {% endblock content %}
+
+    <!-- Footer-->
+    {% block footer %}
+    <footer class="bg-light py-5">
+        <div class="container px-4 px-lg-5">
+            <div class="small text-center text-muted">Copyright &copy; 2021 - Company Name</div>
+        </div>
+    </footer>
+    {% endblock footer %}
+    {% block js %}
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SimpleLightbox plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="{% static 'dist/js/scripts.js' %}"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    {% endblock js %}
+</body>
+
 </html>
