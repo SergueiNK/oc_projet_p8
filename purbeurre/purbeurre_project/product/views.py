@@ -36,5 +36,5 @@ def product_detail(request, id):
 def save_product():
     pass
 
-    #return render (request, 'product/saved_product.html', {})
+    #return render (request, 'product/product_favorite.html', {})
 

@@ -36,6 +36,7 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
+            #return redirect('users:userDetails')
             return redirect('users:user')
         else:
             messages.info(request, 'Le nom d\'utilisateur OU le mot de passe sont incorrectes')

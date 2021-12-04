@@ -24,10 +24,16 @@
                                 <p class="card-title">{{ product.product_name }}</p>
                               </div>
                               <div class="card-body text-center">
-                                <a href="product/{{ product.id }}"
-                                class="btn btn-primary">Sauvegarder</a>
-                                <a href="{% url 'products:detail' product.id %}"
-                                class="btn btn-info">Detail produit</a>
+                                {% if request.user.is_authenticated %}
+                                  {% csrf_token %}
+                                  <a href="{% url 'products:save'%}"
+                                  class="btn btn-primary">Sauvegarder</a>
+                                  <a href="{% url 'products:detail' product.id %}"
+                                  class="btn btn-info">Detail produit</a>
+                                {% else %}
+                                  <a href="{% url 'products:detail' product.id %}"
+                                  class="btn btn-info">Detail produit</a>
+                                {% endif %}  
                               </div>
                             </div>
                             <br><br><br>
