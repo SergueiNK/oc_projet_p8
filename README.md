@@ -32,18 +32,29 @@ Develop into branch develop. Thank to change if you want to see the progress wor
 
 `$ source .venv/bin/activate`
 
+### Import database
+
+`$ sudo psql -U postgres`
+
+```psql
+postgres=# CREATE DATABASE purbeurre;
+postgres=# \q
+```
+
+`$ pg_restore -U postgres -d purbeurre [path]/fulldb.dump`
+
 ### Run server
 
 `$ cd purbeurre/purbeurre_project && python manage.py runserver`  
 
-## How to build and run statics
+## How to build statics
 
 Static files are into purbeurre/purbeurre_project/static/  
 
 ### Install dependencies
 
-`$ npm run install .`
+`$ npm run install .` Install all dependencies.  
 
 ### Build statis
 
-`$ npm run build`  
+`$ npm run build` Create dist directory that contains all build static files served.  
