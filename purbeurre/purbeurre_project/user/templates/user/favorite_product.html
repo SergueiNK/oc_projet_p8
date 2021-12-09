@@ -15,7 +15,7 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-lg-8 text-center">
                     <div class="row">
-                        {% for product  in all_products %}
+                        {% for product  in product_favorite %}
                           <div class="col-md-4 col-sm-6">
                             <div class="card product">
                               <img class="card-img-top" src="{{ product.image_url }}" alt="Card image cap">
@@ -24,19 +24,8 @@
                                 <p class="card-title">{{ product.product_name }}</p>
                               </div>
                               <div class="card-body text-center">
-                                {% if request.user.is_authenticated %}
-                                  {% csrf_token %}
-                                  <form action="{% url 'products:save' %}" method="post">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="substitute_id" value="{{ product.id }}">
-                                    <button type="submit" class="btn btn-primary">Sauvegarder</button>                
-                                  </form>  
                                   <a href="{% url 'products:detail' product.id %}"
-                                  class="btn btn-info">Detail produit</a>
-                                {% else %}
-                                  <a href="{% url 'products:detail' product.id %}"
-                                  class="btn btn-info">Detail produit</a>
-                                {% endif %}  
+                                  class="btn btn-info">Detail produit</a> 
                               </div>
                             </div>
                             <br><br><br>

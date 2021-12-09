@@ -3,6 +3,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 # Create your models here.
 from django.contrib.auth.models import User
+# Create the list of integer in favorite list
+from django.core.validators import int_list_validator
 
 
 class Category(models.Model):
@@ -45,5 +47,11 @@ class Favorite(models.Model):
     class Meta:
         #Il aura jamais deux mêmes entrées
         unique_together = ['product_fk', 'user_fk']
+
+        def __str__(self):
+        
+            return (f"{self.product_fk}"
+                    f"{self.user_fk}"
+                    )
 
     

@@ -27,7 +27,7 @@ class Command(BaseCommand):
         try:
             request_response = requests.get(self.url_request, self.products_params)
             #print(request_response)
-            #print(request_response.url)
+            print(request_response.url)
             response = json.loads(request_response.text)
             #print(response)
             return response.get('products')

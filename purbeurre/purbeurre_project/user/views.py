@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 from .models import AuthUser
+from django.contrib.auth.models import User
+from product.models import Favorite
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib import messages
@@ -49,10 +51,26 @@ def logoutUser(request):
     logout(request)
     return redirect('users:login')
 
+# Pas besoin revoir method Django request.user model gestion utilisateur Django
 def getUser(request, id):
     user_data={}
 
     if request.method == 'GET':
         user_data=AuthUser.objects.get(id=id)
-        print(user)
+        user_data =str(user_data)
+    #if request.user.is_authenticated:
+        #user = User.objects.get(id = request.user.id)
+        #user_data =str(user)
         return render(request, 'user/user.html', {'user_data': user_data})
+
+def getFavorite (request):
+
+    # Besoin de voir pourquoi un seul objet s'affiche et non les trois
+    user = request.user.id
+    favorite_id = Favorite.objects.filter (user_fk = user)
+    print(favorite_id)
+    for product in favorite_id:
+        product_favorite = {product.product_fk}
+        print(product_favorite)
+        
+    return render (request, 'user/favorite_product.html', {"product_favorite": product_favorite})

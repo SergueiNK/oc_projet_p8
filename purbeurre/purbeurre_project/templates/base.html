@@ -42,18 +42,32 @@
             </button>
             <div id="navbar-header" class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav align-items-lg-center">
+                    <form method="GET" action="{% url 'products:product' %}">
+                        <div class="input-group">
+                            <input id="userText" class="form-control" type="text" name="user_product_request"
+                                placeholder="Tappez exemple nutella" aria-label="Search">
+                            <button class="btn btn-outline-primary" type="submit">Chercher...</button>
+                        </div>
+                    </form>
                     {% if request.user.is_authenticated %}
                     <li class="d-flex nav-item">
                         <!--Faire la recherche pour le SRCF token en intégrant le if-->
-                        <a class="nav-link" href="{% url 'users:logout' %}">
-                            <img src="{% static 'dist/assets/img/menu.png' %}" alt="" width="50" height="50"
+                        <a class="nav-link" href="{% url 'users:login' %}">
+                            <img src="{% static 'dist/assets/img/compte.png' %}" alt="" width="55" height="50"
+                                class="d-inline-block align-text-top">
+                        </a>
+                    </li>
+                    <li class="d-flex nav-item">
+                        <!--Faire la recherche pour le SRCF token en intégrant le if-->
+                        <a class="nav-link" href="{% url 'users:fav' %}">
+                            <img src="{% static 'dist/assets/img/carotte.png' %}" alt="" width="55" height="50"
                                 class="d-inline-block align-text-top">
                         </a>
                     </li>
                     <li class="d-flex nav-item">
                         <!--Faire la recherche pour le SRCF token en intégrant le if-->
                         <a class="nav-link" href="{% url 'users:logout' %}">
-                            <img src="{% static 'dist/assets/img/carotte.png' %}" alt="" width="55" height="50"
+                            <img src="{% static 'dist/assets/img/menu.png' %}" alt="" width="50" height="50"
                                 class="d-inline-block align-text-top">
                         </a>
                     </li>
@@ -67,13 +81,6 @@
                     </li>
                     {% endif %}
                 </ul>
-                <form method="GET" action="{% url 'products:product' %}">
-                    <div class="input-group">
-                        <input id="userText" class="form-control" type="text" name="user_product_request"
-                            placeholder="Tappez exemple nutella" aria-label="Search">
-                        <button class="btn btn-outline-primary" type="submit">Chercher...</button>
-                    </div>
-                </form>
             </div>
         </div>
     </nav>
