@@ -27,7 +27,7 @@ def product(request):
         #print(products_by_nutriscore)
         product = Product.objects.filter(product_name__contains = user_request).first()
         substitut = Product.objects.filter(category_fk = product.category_fk, nutrition_grade__lt= product.nutrition_grade)
-        print(product.nutrition_grade)
+        #print(product.nutrition_grade)
         
 
         return render(request, 'product/product.html', {"all_products":
@@ -55,7 +55,7 @@ def save_favorite(request):
     user = User.objects.get(id = request.user.id)
     product_id = request.POST.get("substitute_id")
     product = Product.objects.get(pk=product_id)
-    print(user)
+    #print(user)
     #print(product_id)
     #save_product = Favorite(user_fk=user, product_fk=product)
     #save_product.save()

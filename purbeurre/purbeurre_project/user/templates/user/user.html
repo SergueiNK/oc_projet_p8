@@ -15,12 +15,12 @@
 <body>
     <section class="page-section" id="account">
         <header data-img="/profil_image.png" class="header-page">
-            <h1><span class="pre-title">Aloy!</span>{{ user_data.username }}</h1>
+            <h1><span class="pre-title">Aloy!</span>{{ request.user.username }}</h1>
         </header>
         <section class="container p-5">
             <ul class="row mb-3">
                 <li class="input-group">
-                    <p>{{user_data.email}}</p>
+                    <p>{{request.user.email}}</p>
                 </li>
             </ul>
         </section>

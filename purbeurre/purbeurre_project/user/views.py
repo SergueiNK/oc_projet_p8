@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
-from .models import AuthUser
+#from .models import AuthUser
 from django.contrib.auth.models import User
 from product.models import Favorite
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib import messages
@@ -53,21 +54,10 @@ def logoutUser(request):
     return redirect('users:login')
 
 # Pas besoin revoir method Django request.user model gestion utilisateur Django
-def getUser(request, id):
-    user_data={}
-
-    #if request.method == 'GET':
-        #user_data=AuthUser.objects.get(id=id)
-        #user_data =str(user_data)
-        #print(user_data)
-    #if request.user.is_authenticated:
-    user_id = request.user.id
-    print(user_id)
-    user = User.objects.get(id=user_id)
-    print(user)
-    user_data = str(user)
-    print(user_data)
-    return render(request, 'user/user.html', {'user_data': user_data})
+@login_required
+def getUser(request):
+ 
+    return render(request, 'user/user.html')
 
 def getFavorite (request):
 

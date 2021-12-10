@@ -52,7 +52,7 @@
                     {% if request.user.is_authenticated %}
                     <li class="d-flex nav-item">
                         <!--Faire la recherche pour le SRCF token en intégrant le if-->
-                        <a class="nav-link" href="{% url 'users:userDetails' user.id %}">
+                        <a class="nav-link" href="{% url 'users:userDetails' %}">
                             <img src="{% static 'dist/assets/img/compte.png' %}" alt="" width="55" height="50"
                                 class="d-inline-block align-text-top">
                         </a>
