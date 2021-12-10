@@ -40,6 +40,7 @@ def loginPage(request):
             login(request, user)
             #return redirect('users:userDetails')
             return redirect('users:user')
+            #return render(request, 'user/user.html')
         else:
             messages.info(request, 'Le nom d\'utilisateur OU le mot de passe sont incorrectes')
 
@@ -55,22 +56,28 @@ def logoutUser(request):
 def getUser(request, id):
     user_data={}
 
-    if request.method == 'GET':
-        user_data=AuthUser.objects.get(id=id)
-        user_data =str(user_data)
+    #if request.method == 'GET':
+        #user_data=AuthUser.objects.get(id=id)
+        #user_data =str(user_data)
+        #print(user_data)
     #if request.user.is_authenticated:
-        #user = User.objects.get(id = request.user.id)
-        #user_data =str(user)
-        return render(request, 'user/user.html', {'user_data': user_data})
+    user_id = request.user.id
+    print(user_id)
+    user = User.objects.get(id=user_id)
+    print(user)
+    user_data = str(user)
+    print(user_data)
+    return render(request, 'user/user.html', {'user_data': user_data})
 
 def getFavorite (request):
 
     # Besoin de voir pourquoi un seul objet s'affiche et non les trois
     user = request.user.id
     favorite_id = Favorite.objects.filter (user_fk = user)
-    print(favorite_id)
+    #print(favorite_id)
+    product_favorite= [] 
     for product in favorite_id:
-        product_favorite = {product.product_fk}
-        print(product_favorite)
+        product_favorite.append(product.product_fk)
+        #print(product_favorite)
         
     return render (request, 'user/favorite_product.html', {"product_favorite": product_favorite})
