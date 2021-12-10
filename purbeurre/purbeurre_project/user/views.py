@@ -40,7 +40,7 @@ def loginPage(request):
             login(request, user)
             #return redirect('users:userDetails')
             #return redirect('users:user')
-            return render(request, 'user/user.html')
+            return render(request, 'home/home.html')
         else:
             messages.info(request, 'Le nom d\'utilisateur OU le mot de passe sont incorrectes')
 
