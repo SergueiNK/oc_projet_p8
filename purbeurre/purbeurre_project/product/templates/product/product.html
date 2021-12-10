@@ -18,7 +18,7 @@
                         {% for product  in all_products %}
                           <div class="col-md-4 col-sm-6">
                             <div class="card product">
-                              <img class="card-img-top" src="{{ product.image_url }}" alt="Card image cap">
+                              <img class="card-img-top" src="{{ product.individual_image_url }}" alt="Card image cap">
                               <span class="score score-{{ product.nutrition_grade }}">{{ product.nutrition_grade }}</span>
                               <div class="card-header">
                                 <p class="card-title">{{ product.product_name }}</p>

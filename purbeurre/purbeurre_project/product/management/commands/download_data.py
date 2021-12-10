@@ -18,7 +18,7 @@ class Command(BaseCommand):
             "json": 1,
             "page": 1,
             "fields": "pnns_groups_1,product_name,generic_name_fr,"
-                    "code,url,nutrition_grade_fr,image_url,image_nutrition_url"
+                    "code,url,nutrition_grade_fr,image_url,image_nutrition_url,image_small_url"
         }
 
 
@@ -63,7 +63,10 @@ class Command(BaseCommand):
                 and product.get('image_url') != '' \
                 and product.get('image_nutrition_url') \
                 and product.get('image_nutrition_url') != 'unknown' \
-                and product.get('image_nutrition_url') != '' :
+                and product.get('image_nutrition_url') != '' \
+                and product.get('image_small_url') \
+                and product.get('image_small_url') != 'unknown' \
+                and product.get('image_small_url') != '' :
             return True
         else:
             return False
@@ -101,15 +104,17 @@ class Command(BaseCommand):
                         product_description = extract_product.get('generic_name_fr'),
                         url = extract_product.get('url'),
                         nutrition_grade = extract_product.get('nutrition_grade_fr'),
-                        image_url = extract_product.get('image_url'),
+                        individual_image_url = extract_product.get('image_url'),
+                        list_image_url = extract_product.get('image_small_url'),
                         image_nutrition_url = extract_product.get('image_nutrition_url'),
                         category_fk = category_data,
                     )
-                            
+                    product_data.save() 
+                    print(product_data)       
 
                 except Exception as e:
                     print(e)
-                    print(product_data)
+                    #print(product_data)
                     #print(product_data)
                     CommandError('Product does not exist')
 

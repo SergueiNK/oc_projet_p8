@@ -22,7 +22,8 @@ class Product(models.Model):
     product_description = models.CharField("description of product", max_length=500)
     url = models.CharField("url of product", max_length=500)
     nutrition_grade = models.CharField("nutrition grade of product", max_length=500)
-    image_url = models.URLField()
+    individual_image_url = models.URLField()
+    list_image_url = models.URLField()
     image_nutrition_url = models.URLField()
     category_fk = models.ForeignKey(Category, on_delete=models.PROTECT, default="0")
     
@@ -33,7 +34,8 @@ class Product(models.Model):
                 f"{self.product_description}"
                 f"{self.url}"
                 f"{self.nutrition_grade}"
-                f"{self.image_url}"
+                f"{self.individual_image_url}"
+                f"{self.list_image_url}"
                 f"{self.image_nutrition_url}"
                 f"{self.category_fk}"
                 )
