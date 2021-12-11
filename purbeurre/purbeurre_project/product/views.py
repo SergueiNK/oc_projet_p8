@@ -26,6 +26,7 @@ def product(request):
         #user_request_product = products_by_nutriscore.filter(product_name__contains = user_request)
         #print(products_by_nutriscore)
         product = Product.objects.filter(product_name__contains = user_request).first()
+        print(product)
         substitut = Product.objects.filter(category_fk = product.category_fk, nutrition_grade__lt= product.nutrition_grade)
         #print(product.nutrition_grade)
         
