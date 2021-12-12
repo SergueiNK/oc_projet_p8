@@ -18,7 +18,7 @@ class Command(BaseCommand):
             "json": 1,
             "page": 1,
             "fields": "pnns_groups_1,product_name,generic_name_fr,"
-                    "code,url,nutrition_grade_fr,image_url,image_nutrition_url,image_small_url"
+                    "code,url,nutrition_grade_fr,image_url,image_nutrition_url,image_front_thumb_url"
         }
 
 
@@ -64,9 +64,9 @@ class Command(BaseCommand):
                 and product.get('image_nutrition_url') \
                 and product.get('image_nutrition_url') != 'unknown' \
                 and product.get('image_nutrition_url') != '' \
-                and product.get('image_small_url') \
-                and product.get('image_small_url') != 'unknown' \
-                and product.get('image_small_url') != '' :
+                and product.get('image_front_thumb_url') \
+                and product.get('image_front_thumb_url') != 'unknown' \
+                and product.get('image_front_thumb_url') != '' :
             return True
         else:
             return False
@@ -105,7 +105,7 @@ class Command(BaseCommand):
                         url = extract_product.get('url'),
                         nutrition_grade = extract_product.get('nutrition_grade_fr'),
                         individual_image_url = extract_product.get('image_url'),
-                        list_image_url = extract_product.get('image_small_url'),
+                        list_image_url = extract_product.get('image_front_thumb_url'),
                         image_nutrition_url = extract_product.get('image_nutrition_url'),
                         category_fk = category_data,
                     )
