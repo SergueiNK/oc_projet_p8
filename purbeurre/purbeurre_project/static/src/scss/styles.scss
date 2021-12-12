@@ -1,12 +1,12 @@
-// 
+//
 // Styles
-// 
+//
 
 // Import custom variables and override default Bootstrap variables
 @import "./variables.scss";
 
 // Import Bootstrap
-@import "bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 // Import custom styles
 @import "./global.scss";
@@ -21,4 +21,4 @@
 @import "./sections/masthead.scss";
 @import "./sections/portfolio.scss";
 @import "./components/product";
-@import "./components/user"
+@import "./components/user";
