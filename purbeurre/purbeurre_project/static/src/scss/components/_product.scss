@@ -8,6 +8,14 @@
     .card-img-top {
         height: 100px;
     }
+    .card-body {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+    }
+    .btn {
+        margin-top: 1em;
+    }
 }
 .score {
     position: absolute;
