@@ -19,6 +19,9 @@
                       <input id="userText" class="form-control" type="text" name="user_product_request" placeholder="Tappez exemple nutella" aria-label="Search">
                       <button class="btn btn-outline-primary" type="submit">Chercher...</button>
                     </div>
+                    {% for message in messages %}
+                    <p id="messages">{{message}}</p>
+                    {% endfor %}
                   </form>
                 </div>
             </div>

@@ -3,21 +3,18 @@
 
 {% block header %}
 
-<head>
-    <title>Product_detail</title>
-
-</head>
 {% endblock header %}
 {% block content %}
 
 <body>
     <section class="page-section" id="product-details">
-        <header data-img="{{product_data.individual_image_url}}" class="header-page">
+        <header class="header-page" style="background-image: url({{ product_data.individual_image_url }})">
             <h1>{{ product_data.product_name }}</h1>
         </header>
         <section class="container p-5">
             <div class="row mb-3">
-                <div class="col scoring">Nutriscore</div>
+                <div class="col scoring"><img src="https://static.openfoodfacts.org/images/misc/nutriscore-{{product_data.nutrition_grade}}.svg" class="img-fluid"
+                    alt="Nutri value"></div>
                 <div class="col nutri-value"><img src="{{product_data.image_nutrition_url}}" class="img-fluid"
                         alt="Nutri value"></div>
             </div>

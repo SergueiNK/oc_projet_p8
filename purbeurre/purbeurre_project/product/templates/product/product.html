@@ -9,7 +9,11 @@
 
 <body>
   <section class="page-section bg-primary" id="about">
+    <header class="header-page" style="background-image: url({{ product_request.individual_image_url }})">
+            <h1>{{ product_request.product_name }}</h1>
+        </header>
     <div class="container">
+      <h2 class="text-center"> Vous pouvez remplacer cet aliment par:</h2>
       <div class="row row-cols-1 row-cols-lg-3 pt-5">
         {% for product in all_products %}
         <div class="col mb-5">
