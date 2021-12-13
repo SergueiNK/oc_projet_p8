@@ -1,10 +1,21 @@
 #product-details {
     .header-page {
-        background-image: url("https://images.openfoodfacts.org/images/products/325/149/033/2080/front_fr.105.400.jpg")
+        background-image: url("https://images.openfoodfacts.org/images/products/325/149/033/2080/front_fr.105.400.jpg");
     }
 }
 .product {
     position: relative;
+    .card-img-top {
+        height: 100px;
+    }
+    .card-body {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+    }
+    .btn {
+        margin-top: 1em;
+    }
 }
 .score {
     position: absolute;
