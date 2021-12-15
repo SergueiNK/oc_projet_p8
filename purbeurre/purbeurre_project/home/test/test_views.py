@@ -1,11 +1,11 @@
-from home import views
+from django.test import TestCase
+from django.urls import reverse
+from django.contrib.auth.models import User
 
-# On utilise django test avec rf qui va simuler une requete
-# rf c'est la request factory(une fabrique à requete)
-def test_home_works_correctly(rf):
-    # On simule une requete http
-    request = rf.get('/path/to/home')
-    response = views.home(request)
-    # permet de tester la condition et d'énclencher une erreur immediatement si la réponse est fausse
-    assert response.status_code == 200
-    
+
+
+class HomeTestCase(TestCase):
+
+    def test_home_page_200(self):
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
