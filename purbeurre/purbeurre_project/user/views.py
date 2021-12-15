@@ -15,7 +15,7 @@ def user(request):
 
 def registerPage(request):
     form = CreateUserForm()
-
+    # On récoit les données de navigateur pour la création de compte
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():

@@ -31,7 +31,7 @@ def product(request):
             product = Product.objects.filter(product_name__contains = user_request).first()
             print(product)
             if product is not None:
-                substitut = Product.objects.filter(category_fk = product.category_fk, nutrition_grade__lt= product.nutrition_grade)
+                substitut = Product.objects.filter(category_fk = product.category_fk, nutrition_grade__lt= product.nutrition_grade).order_by("nutrition_grade")
             #print(product.nutrition_grade)
                 context = {"all_products": substitut, "product_request": product}
 
