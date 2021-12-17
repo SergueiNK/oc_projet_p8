@@ -4,15 +4,21 @@ from django.contrib.auth.models import User
 from product.models import Category, Product, Favorite
 
 
-class PageTestCase(TestCase):
+class ProductViewsTests(TestCase):
 
     def setUp(self):
         self.user = User()
         self.product = Product()
         self.category = Category.objects.create(category_name = 'Sugary snack')
-        User.objects.create (
-            id = '4',
-            username = 'blabla4'
+        self.favorite = Favorite.objects.create(
+            product_fk = self.product,
+            user_fk = self.user
+        )
+        User.objects.create(
+            username = 'user4',
+            password = 'password',
+            email = 'email',
+            id = '4'
         )
         Product.objects.create(
             code_product = '7622210449283 ',
@@ -49,32 +55,39 @@ class PageTestCase(TestCase):
             image_nutrition_url = 'https://images.openfoodfaacts...',
             category_fk = self.category,
             id = '5'
-        )
+        )   
 
     def test_substitute_page(self):
-        """test substitute page"""
-        product_name = str('Prince Chocolat')
-        response = self.client.get(reverse('products:product'),
-                        {'user_request': product_name})
-        self.assertEqual(response.status_code, 200)    
+
+        product_name = 'Prince Chocolat'
+        data = {'user_product_request': product_name}
+        url = reverse ('products:product')
+        response = self.client.get(url, data)
+        self.assertEqual(response.status_code, 302)    
+
 
     def test_not_existing_substitute_page(self):
-        """test no substitute page"""
         try:
-            response = self.client.get(reverse('products:product'), {
-                'user_request': 'NOTHING',
-            })
-            self.assertEqual(response.status_code, 404)
+            data = {'user_request': 'NOTHING',}
+            url = reverse('products:product')
+            response = self.client.get(url, data)
+            self.assertEqual(response.status_code, 302)
         except:
             pass
 
     def test_detail_page(self):
         product_id = '5'
-        response = self.client.get(reverse('products:detail', args=(product_id)))
+        url = reverse('products:detail', args=(product_id))
+        response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_save_favorite(self):
-        user_id = str('4')
-        product_id = str('5')
-        response = self.client.get(reverse('products:save', {'user': user_id, 'product_id':product_id}))
+
+        self.client.force_login(self.user)
+        user_data = self.user
+        product_id = '5'
+        data = {'substitute_id': product_id, 'user': user_data}
+        print(data)
+        url = reverse('products:save')
+        response = self.client.get(url, data)
         self.assertEqual(response.status_code, 200)

@@ -59,7 +59,7 @@ def getUser(request):
  
     return render(request, 'user/user.html')
 
-def getFavorite (request):
+def getFavorite(request):
 
     # Besoin de voir pourquoi un seul objet s'affiche et non les trois
     user = request.user.id
