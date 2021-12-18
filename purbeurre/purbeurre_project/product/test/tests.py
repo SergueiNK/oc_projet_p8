@@ -7,46 +7,19 @@ from product.models import Category, Product, Favorite
 class ProductViewsTests(TestCase):
 
     def setUp(self):
-        self.user = User()
-        self.product = Product()
-        self.category = Category.objects.create(category_name = 'Sugary snack')
-        self.favorite = Favorite.objects.create(
-            product_fk = self.product,
-            user_fk = self.user
-        )
-        User.objects.create(
+
+        self.user = User.objects.create(
             username = 'user4',
             password = 'password',
             email = 'email',
             id = '4'
         )
-        Product.objects.create(
-            code_product = '7622210449283 ',
-            product_name = 'Prince Chocolat',
-            product_description = 'Biscuits au chocolat',
-            url = 'https://fr.openfoodfacts...',
-            nutrition_grade = 'c',
-            individual_image_url = 'https://images.openfoodfaacts...',
-            list_image_url = 'https://images.openfoodfaacts...',
-            image_nutrition_url = 'https://images.openfoodfaacts...',
-            category_fk = self.category,
-            id = '3'
-        )
-        Product.objects.create(
-            code_product = '7622210449273 ',
-            product_name = 'Nutella',
-            product_description = 'Biscuits au chocolat',
-            url = 'https://fr.openfoodfacts...',
-            nutrition_grade = 'a',
-            individual_image_url = 'https://images.openfoodfaacts...',
-            list_image_url = 'https://images.openfoodfaacts...',
-            image_nutrition_url = 'https://images.openfoodfaacts...',
-            category_fk = self.category,
-            id = '4'
-        )
-        Product.objects.create(
+
+        self.category = Category.objects.create(category_name = 'Sugary snack')
+
+        self.product = Product.objects.create(
             code_product = '7622210449873 ',
-            product_name = 'Pomme',
+            product_name = 'Prince Chocolat',
             product_description = 'Biscuits au chocolat',
             url = 'https://fr.openfoodfacts...',
             nutrition_grade = 'b',
@@ -55,7 +28,15 @@ class ProductViewsTests(TestCase):
             image_nutrition_url = 'https://images.openfoodfaacts...',
             category_fk = self.category,
             id = '5'
-        )   
+        )
+        print(self.product)
+        #self.favorite = Favorite.objects.create(
+            #product_fk = self.product,
+            #user_fk = self.user
+        #)
+        self.favorite = Favorite.objects.create(user_fk=self.user, product_fk=self.product)
+        #print(self.favorite.user_fk)   
+        #print(self.favorite.product_fk)  
 
     def test_substitute_page(self):
 
@@ -84,11 +65,13 @@ class ProductViewsTests(TestCase):
     def test_save_favorite(self):
 
         self.client.force_login(self.user)
-        user_data = self.user
+        
         product_id = '5'
-        data = {'substitute_id': product_id, 'user': user_data}
+        data = {'substitute_id': product_id}
         print(data)
         url = reverse('products:save')
         print(url)
         response = self.client.get(url, data)
-        self.assertEqual(response.status_code, 200)
+        
+        self.assertEqual(response.status_code, 302)
+        

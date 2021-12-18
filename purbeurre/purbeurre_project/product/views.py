@@ -43,7 +43,10 @@ def save_favorite(request):
     #print(current_user)
   
     user = User.objects.get(id = request.user.id)
+    print(user)
     product_id = request.POST.get('substitute_id')
+    print(product_id)
     product = Product.objects.get(pk=product_id)
+    print(product)
     Favorite.objects.create(user_fk=user, product_fk=product)
     return redirect ('users:fav')
