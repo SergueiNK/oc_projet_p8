@@ -89,5 +89,6 @@ class ProductViewsTests(TestCase):
         data = {'substitute_id': product_id, 'user': user_data}
         print(data)
         url = reverse('products:save')
+        print(url)
         response = self.client.get(url, data)
         self.assertEqual(response.status_code, 200)
