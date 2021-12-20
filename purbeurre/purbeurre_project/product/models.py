@@ -8,7 +8,7 @@ from django.core.validators import int_list_validator
 
 
 class Category(models.Model):
-
+    """Model category, related to product """
     category_name = models.CharField(_("category name"), unique=True, max_length=500)
     def __str__(self):
         return  (f"{self.category_name}"
@@ -16,7 +16,7 @@ class Category(models.Model):
 
                 
 class Product(models.Model):
-
+    """Model related to products"""
     code_product = models.CharField("code of product", unique=True, max_length=500)
     product_name = models.CharField("name of product", max_length=500)
     product_description = models.CharField("description of product", max_length=500)
@@ -28,7 +28,7 @@ class Product(models.Model):
     category_fk = models.ForeignKey(Category, on_delete=models.PROTECT, default="0")
     
     def __str__(self):
-        
+        """Return transform object into the string"""    
         return (f"{self.code_product}"
                 f"{self.product_name}"
                 f"{self.product_description}"
@@ -42,16 +42,14 @@ class Product(models.Model):
 
 
 class Favorite(models.Model):
-    #id_favorites = models.AutoField.primary_key("id_favorites", primary_key=True)
-    # default="0" Django a besoin de data pour créer les tables
+    """Model related to saved favorite product and user corresponding"""
     product_fk = models.ForeignKey(Product, on_delete=models.PROTECT, default="0")
     user_fk = models.ForeignKey(User, on_delete=models.PROTECT, default="0")
     class Meta:
-        #Il aura jamais deux mêmes entrées
         unique_together = ['product_fk', 'user_fk']
 
         def __str__(self):
-        
+            """Return transform object into the string"""    
             return (f"{self.product_fk}"
                     f"{self.user_fk}"
                     )

@@ -1,9 +1,10 @@
 from django.shortcuts import render
 
-# Create your views here.
 
 def home (request):
+    """test the home page"""
     return render(request, 'home/home.html')
 
 def legal_notice(request):
+    """test the leagal notice page"""
     return render(request, 'home/legal.html')

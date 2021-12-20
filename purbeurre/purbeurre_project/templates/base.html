@@ -51,21 +51,18 @@
                     </form>
                     {% if request.user.is_authenticated %}
                     <li class="d-flex nav-item">
-                        <!--Faire la recherche pour le SRCF token en intégrant le if-->
                         <a class="nav-link" href="{% url 'users:userDetails' %}">
                             <img src="{% static 'dist/assets/img/compte.png' %}" alt="" width="55" height="50"
                                 class="d-inline-block align-text-top">
                         </a>
                     </li>
                     <li class="d-flex nav-item">
-                        <!--Faire la recherche pour le SRCF token en intégrant le if-->
                         <a class="nav-link" href="{% url 'users:fav' %}">
                             <img src="{% static 'dist/assets/img/carotte.png' %}" alt="" width="55" height="50"
                                 class="d-inline-block align-text-top">
                         </a>
                     </li>
                     <li class="d-flex nav-item">
-                        <!--Faire la recherche pour le SRCF token en intégrant le if-->
                         <a class="nav-link" href="{% url 'users:logout' %}">
                             <img src="{% static 'dist/assets/img/menu.png' %}" alt="" width="50" height="50"
                                 class="d-inline-block align-text-top">
@@ -73,7 +70,6 @@
                     </li>
                     {% else %}
                     <li class="d-flex nav-item">
-                        <!--Faire la recherche pour le SRCF token en intégrant le if-->
                         <a class="nav-link" href="{% url 'users:login' %}">
                             <img src="{% static 'dist/assets/img/compte.png' %}" alt="" width="55" height="50"
                                 class="d-inline-block align-text-top">
@@ -87,7 +83,6 @@
 
     {% endblock nav %}
 
-    <!-- Masthead-->
     {% block header %}
 
     {% endblock header %}
@@ -96,7 +91,6 @@
 
     {% endblock content %}
 
-    <!-- Footer-->
     {% block footer %}
     <footer>
         <div class="container">
