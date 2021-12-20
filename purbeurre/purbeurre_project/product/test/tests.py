@@ -43,14 +43,6 @@ class ProductViewsTests(TestCase):
             id = '4'
         )
         self.sub_product = Product.objects.create
-        #print(self.product)
-        #self.favorite = Favorite.objects.create(
-            #product_fk = self.product,
-            #user_fk = self.user
-        #)
-        self.favorite = Favorite.objects.create(user_fk=self.user, product_fk=self.product)
-        #print(self.favorite.user_fk)   
-        #print(self.favorite.product_fk)  
 
     def test_substitute_page(self):
         """test substitute page"""
@@ -58,18 +50,7 @@ class ProductViewsTests(TestCase):
         data = {'user_product_request': product_name}
         url = reverse ('products:product')
         response = self.client.get(url, data)
-        #print(response)
         self.assertEqual(response.status_code, 200)
-
-    #def test_contain_return_context(self):
-        #product_name_incomplete = 'nut'
-        #data = {'user_product_request': product_name_incomplete}
-        #url = reverse ('products:product')
-        #response = self.client.get(url, data)
-        #print(response)
-        #product_returned = response.data['product'][0].name
-        #self.assertEqual(product_returned, 'Nutella')       
-
 
     def test_not_existing_substitute_page(self):
         """Test if input user request is wrong"""
@@ -95,10 +76,7 @@ class ProductViewsTests(TestCase):
         data = {'substitute_id': product_id}
         print(data)
         url = reverse('products:save')
-        #print(url)
-        response = self.client.get(url, data)
-        #print(response)
-        
+        response = self.client.post(url, data)      
         self.assertEqual(response.status_code, 302)
         
         
