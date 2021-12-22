@@ -4,32 +4,32 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 
-
 def product(request):
-        """ Given a user input request product after retrieve that object from database. Select 
-        it categoty and give in templates the products substitute with the same category type """
-
-        if 'user_product_request' in request.GET:
-            # User input
-            user_request = request.GET['user_product_request']
-            # User input normalization
-            user_request =str(user_request).lower().capitalize()
-
-            # Getting object that contain the name of user input
-            product = Product.objects.filter(product_name__contains = user_request).first()
+    """ Given a user input request product after
+    retrieve that object from database. Select
+    it categoty and give in templates the products
+    substitute with the same category type. """
+    if 'user_product_request' in request.GET:
+        # User input
+        user_request = request.GET['user_product_request']
+        # User input normalization
+        user_request = str(user_request).lower().capitalize()
+        # Getting object that contain the name of user input
+        product = Product.objects.filter(product_name__contains=user_request).first()
             
-            if product is not None:
-                # Getting the substitutes that have the same category that user request input, have better nutriscore.
-                # Ordered by nutriscore and display is limited to 18 products.
-                substitut = Product.objects.filter(category_fk = product.category_fk, nutrition_grade__lt= product.nutrition_grade).order_by("nutrition_grade")[:18]
+        if product is not None:
+            # Getting the substitutes that have the same category that user request input, have better nutriscore.
+            # Ordered by nutriscore and display is limited to 18 products.
+            substitut = Product.objects.filter(category_fk=product.category_fk, \
+                        nutrition_grade__lt=product.nutrition_grade).order_by("nutrition_grade")[:18]
 
-                # Dict that is an charge with data for substitutes products and original user input product
-                context = {"all_products": substitut, "product_request": product}
-                return render(request, 'product/product.html', context )
-            else:
-                # In case of not existing product send the error message
-                messages.error(request, 'Veuillez refaire la recherche')    
-                return redirect("/")
+            # Dict that is an charge with data for substitutes products and original user input product
+            context = {"all_products": substitut, "product_request": product}
+            return render(request, 'product/product.html', context )
+        else:
+            # In case of not existing product send the error message
+            messages.error(request, 'Veuillez refaire la recherche')    
+            return redirect("/")
     
 
 
