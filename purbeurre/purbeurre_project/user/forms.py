@@ -5,6 +5,7 @@ from django import forms
 
 
 class CreateUserForm(UserCreationForm):
+    """The class how defind the the all params for user register"""
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
