@@ -20,9 +20,15 @@ Develop into branch develop. Thank to change if you want to see the progress wor
 
 `$ pip install psycopg2` 
 
-### Install Python requirements
+### Install Python requirements for linux
 
-`$ .venv/bin/pip install -r requirements.txt`  
+`$ .venv/bin/pip install -r requirements.txt`
+
+### Install Python requirements for windows
+
+`cd .venv/Scripts/`
+
+`pip install -r ../../requirements.txt`
 
 ### Create the virtual environment
 
@@ -32,7 +38,7 @@ Develop into branch develop. Thank to change if you want to see the progress wor
 
 `$ source .venv/bin/activate`
 
-### Import database
+### Create database purbeurre
 
 `$ sudo psql -U postgres`
 
@@ -40,8 +46,15 @@ Develop into branch develop. Thank to change if you want to see the progress wor
 postgres=# CREATE DATABASE purbeurre;
 postgres=# \q
 ```
+### Import models to create tables
 
-`$ pg_restore -U postgres -d purbeurre [path]/fulldb.dump`
+`$ cd purbeurre/purbeurre_project && python manage.py makemigrations` 
+
+`$ cd purbeurre/purbeurre_project && python manage.py migrate` 
+
+### Import and insert data from API Openfoodsfacts
+
+`$ cd purbeurre/purbeurre_project && python manage.py download_data` 
 
 ### Run server
 
