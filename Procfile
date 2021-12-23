@@ -1,1 +1,0 @@
-web: purbeurre.purbeurre_project.config.wsgi --log-file -
