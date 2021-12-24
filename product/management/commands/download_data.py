@@ -101,7 +101,7 @@ class Command(BaseCommand):
                         category_fk = category_data,
                     )
                     product_data.save() 
-                    #print(product_data)       
+                    print(product_data)       
 
                 except Exception as e:
                     print(e)
