@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-wfon4(q*m$=j^^wxpy-6mdb*xuma=xwud&)wp8d=tdz7j5-ou^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if os.environ.get('ENV', 'development') == 'production' else True
 
-ALLOWED_HOSTS = ['.herokuapps.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['purbeurre-spatial.herokuapps.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
