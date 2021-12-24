@@ -16,7 +16,7 @@ class Command(BaseCommand):
         self.products_params = {
             "action": "process",
             "sort_by": "unique_scans_n",
-            "page_size": 1000,
+            "page_size": 500,
             "json": 1,
             "page": 1,
             "fields": "pnns_groups_1,product_name,generic_name_fr,"
