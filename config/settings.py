@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "92xTHUIOL4568!*")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if os.environ.get('ENV', 'development') == 'production' else True
 
-ALLOWED_HOSTS = ['purbeurre-spatial.herokuapps.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['purbeurre-spatial.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
