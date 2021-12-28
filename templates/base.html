@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+{% load statics %}
 <html lang="en">
 {% block head %}
 
@@ -21,7 +21,7 @@
     <!-- SimpleLightbox plugin CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{% static 'dist/css/styles.css' %}" rel="stylesheet" />
+    <link href="{% statics 'dist/css/styles.css' %}" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -32,7 +32,7 @@
     <nav class="navbar navbar-light bg-light navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="/#page-top">
-                <img src="{% static 'dist/assets/img/logo_pur_beurre.png' %}" alt="" width="55" height="35"
+                <img src="{% statics 'dist/assets/img/logo_pur_beurre.png' %}" alt="" width="55" height="35"
                     class="d-inline-block align-text-top">
                 <span class="ml-2" style="border-bottom: solid 3px #C45525;">Pur Beurre</span>
             </a>
@@ -52,26 +52,26 @@
                     {% if request.user.is_authenticated %}
                     <li class="d-flex nav-item">
                         <a class="nav-link" href="{% url 'users:userDetails' %}">
-                            <img src="{% static 'dist/assets/img/compte.png' %}" alt="" width="55" height="50"
+                            <img src="{% statics 'dist/assets/img/compte.png' %}" alt="" width="55" height="50"
                                 class="d-inline-block align-text-top">
                         </a>
                     </li>
                     <li class="d-flex nav-item">
                         <a class="nav-link" href="{% url 'users:fav' %}">
-                            <img src="{% static 'dist/assets/img/carotte.png' %}" alt="" width="55" height="50"
+                            <img src="{% statics 'dist/assets/img/carotte.png' %}" alt="" width="55" height="50"
                                 class="d-inline-block align-text-top">
                         </a>
                     </li>
                     <li class="d-flex nav-item">
                         <a class="nav-link" href="{% url 'users:logout' %}">
-                            <img src="{% static 'dist/assets/img/menu.png' %}" alt="" width="50" height="50"
+                            <img src="{% statics 'dist/assets/img/menu.png' %}" alt="" width="50" height="50"
                                 class="d-inline-block align-text-top">
                         </a>
                     </li>
                     {% else %}
                     <li class="d-flex nav-item">
                         <a class="nav-link" href="{% url 'users:login' %}">
-                            <img src="{% static 'dist/assets/img/compte.png' %}" alt="" width="55" height="50"
+                            <img src="{% statics 'dist/assets/img/compte.png' %}" alt="" width="55" height="50"
                                 class="d-inline-block align-text-top">
                         </a>
                     </li>
@@ -109,7 +109,7 @@
     <!-- SimpleLightbox plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
     <!-- Core theme JS-->
-    <script src="{% static 'dist/js/scripts.js' %}"></script>
+    <script src="{% statics 'dist/js/scripts.js' %}"></script>
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

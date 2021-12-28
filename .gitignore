@@ -131,6 +131,5 @@ dmypy.json
 .pyre/
 
 # NPM
-static/node_modules/
-static/dist/
-static/.git
+statics/node_modules/
+statics/dist/
