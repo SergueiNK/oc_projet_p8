@@ -80,16 +80,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
-    #'default': {
-        #'ENGINE': 'django.db.backends.postgresql',
-        #'NAME': 'purbeurre',
-        #'USER': 'postgres',
-        #'PASSWORD': 'tata2131',
-        #'HOST': '',
-        #'PORT': '5432',
-    #}
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'purbeurre',
+        'USER': 'postgres',
+        'PASSWORD': 'tata2131',
+        'HOST': '',
+        'PORT': '5432',
+    }
+}
 
 
 # Password validation
