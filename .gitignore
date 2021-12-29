@@ -132,4 +132,4 @@ dmypy.json
 
 # NPM
 static/node_modules/
-static/dist/
+
