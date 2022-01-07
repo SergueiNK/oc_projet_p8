@@ -2,6 +2,7 @@ import sys
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 from config.settings import BASE_DIR
 from selenium import webdriver
 
@@ -15,17 +16,18 @@ class ChromeFunctionalTestUser(StaticLiveServerTestCase):
 
     @classmethod
     def setUpClass(cls):
+        """Tests variables and config"""
         super().setUpClass() 
         cls.driver = webdriver.Chrome(
             executable_path=str(BASE_DIR / "webdrivers" / "chromedriver"),
-            options=chrome_options,
-        )
-        cls.driver.implicitly_wait(10)
-        cls.driver.maximize_window()
+        options=chrome_options,)
+        
         cls.username = "toto"
         cls.email = "toto@gmail.com"
         cls.password1 = "Saturn!*1584"
         cls.password2 = "Saturn!*1584"
+        cls.driver.implicitly_wait(10)
+        cls.driver.maximize_window()
 
     @classmethod
     def tearDownClass(cls):
