@@ -1,9 +1,11 @@
 from selenium import webdriver
+import time
 from django.contrib.staticfiles.testing import LiveServerTestCase
 from webdriver_manager.chrome import ChromeDriverManager
-from django.contrib.auth import get_user_model
-from django.urls import reverse
-from config.settings import BASE_DIR
+
+from selenium.webdriver.common.keys import Keys
+
+
 
 
 chrome_options = webdriver.ChromeOptions()
@@ -20,6 +22,10 @@ class ChromeFunctionalTestUser(LiveServerTestCase):
         super().setUpClass() 
         cls.selenium = webdriver.Chrome(ChromeDriverManager().install())
         #cls.selenium.implicity_wait(10)
+        cls.username = "toutou"
+        cls.email = "toutou@gmail.com"
+        cls.password = "Toutou!*1914"
+
 
     @classmethod
     def tearDownClass(cls):
@@ -28,24 +34,36 @@ class ChromeFunctionalTestUser(LiveServerTestCase):
 
     def test_user_register_and_login(self):
         self.selenium.get("http://127.0.0.1:8000/user/register")
-        home_url = self.live_server_url  
-        self.selenium.find_elements_by_css_selector("#register-link").click()
+        #user_url = self.live_server_url  
+        #self.selenium.find_elements_by_css_selector("#register-link").click()
 
-        self.selenium.find_element_by_css_selector("#id-username").send_keys(
-            "toto"
+        self.selenium.find_element_by_id("id_username").send_keys(
+            self.username
         )
-        self.selenium.find_element_by_css_selector("#id-email").send_keys(
-            "toto@gmail.com"
+        self.selenium.find_element_by_id("id_email").send_keys(
+            self.email
         )
-        self.selenium.find_element_by_css_selector("#id-password1").send_keys(
-            "Saturn!*1584"
+        self.selenium.find_element_by_id("id_password1").send_keys(
+            self.password
         )
-        self.selenium.find_element_by_css_selector("#id-password2").send_keys(
-            "Saturn!*1584"
+        self.selenium.find_element_by_id("id_password2").send_keys(
+            self.password
         )
-        self.selenium.find_elements_by_css_selector("#button-submit-register").click()
+        self.selenium.find_element_by_id("button-submit-register").click()
+        time.sleep(10)
 
-        self.assertEqual(self.selenium.current_url, home_url)
+
+        self.selenium.find_element_by_id("id-username").send_keys(
+            self.username
+        )
+        self.selenium.find_element_by_id("id-password").send_keys(
+            self.password
+        )
+        self.selenium.find_element_by_id("button-submit-login").click()
+        # A faire appuer sur le bouton et rajouter pour valider 
+
+
+        #self.assertEqual(self.selenium.current_url, user_url)
        
 
 
