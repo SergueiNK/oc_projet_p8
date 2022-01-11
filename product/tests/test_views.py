@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
-from product.models import Category, Product, Favorite
+from product.models import Category, Product
 
 
 class ProductViewsTests(TestCase):
@@ -45,7 +45,7 @@ class ProductViewsTests(TestCase):
         self.sub_product = Product.objects.create
 
     def test_substitute_page(self):
-        """test substitute page"""
+        """Test substitute page view return response 200"""
         product_name = 'Nutella'
         data = {'user_product_request': product_name}
         url = reverse ('products:product')
@@ -53,7 +53,7 @@ class ProductViewsTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_not_existing_substitute_page(self):
-        """Test if input user request is wrong"""
+        """Test if input user request is wrong view return redirect"""
         try:
             data = {'user_request': 'NOTHING',}
             url = reverse('products:product')
@@ -63,18 +63,17 @@ class ProductViewsTests(TestCase):
             pass
 
     def test_detail_page(self):
-        """Test detail page"""
+        """Test detail page view return response 200"""
         product_id = '3'
         url = reverse('products:detail', args=(product_id))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_save_favorite(self):
-        """Test substitute product save"""
+        """Test substitute product save view redirect to save page"""
         self.client.force_login(self.user)       
         product_id = '3'
         data = {'substitute_id': product_id}
-        print(data)
         url = reverse('products:save')
         response = self.client.post(url, data)      
         self.assertEqual(response.status_code, 302)

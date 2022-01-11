@@ -22,9 +22,9 @@ class ChromeFunctionalTestUser(LiveServerTestCase):
         super().setUpClass() 
         cls.selenium = webdriver.Chrome(ChromeDriverManager().install())
         #cls.selenium.implicity_wait(10)
-        cls.username = "toutou"
-        cls.email = "toutou@gmail.com"
-        cls.password = "Toutou!*1914"
+        cls.username = "nounou"
+        cls.email = "nounou@gmail.com"
+        cls.password = "Nounou!*1914"
 
 
     @classmethod
@@ -50,7 +50,7 @@ class ChromeFunctionalTestUser(LiveServerTestCase):
             self.password
         )
         self.selenium.find_element_by_id("button-submit-register").click()
-        time.sleep(10)
+        time.sleep(3)
 
 
         self.selenium.find_element_by_id("id-username").send_keys(
@@ -60,10 +60,7 @@ class ChromeFunctionalTestUser(LiveServerTestCase):
             self.password
         )
         self.selenium.find_element_by_id("button-submit-login").click()
-        # A faire appuer sur le bouton et rajouter pour valider 
 
-
-        #self.assertEqual(self.selenium.current_url, user_url)
        
 
 

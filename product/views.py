@@ -44,10 +44,8 @@ def save_favorite(request):
     """ Save favorite is able to take selected product and ssave him into Favorite table from database """
     # Getting actual connected user object 
     user = User.objects.get(id = request.user.id)
-    print(user)
     # Getting the product id choiced by user
     product_id = request.POST.get('substitute_id')
-    print(product_id)
     # Getting the related product objects
     product = Product.objects.get(pk=product_id)
     # Saved the object related substitute product and user id in Favorite table
