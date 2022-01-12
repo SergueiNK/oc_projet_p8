@@ -7,7 +7,6 @@ from selenium.webdriver.common.keys import Keys
 
 
 
-
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('window-size=1920x1080')
@@ -21,10 +20,10 @@ class ChromeFunctionalTestUser(LiveServerTestCase):
         """Tests variables and config"""
         super().setUpClass() 
         cls.selenium = webdriver.Chrome(ChromeDriverManager().install())
-        #cls.selenium.implicity_wait(10)
-        cls.username = "nounou"
-        cls.email = "nounou@gmail.com"
-        cls.password = "Nounou!*1914"
+        #Create data for test
+        cls.username = "koukou"
+        cls.email = "koukou@gmail.com"
+        cls.password = "Koukou!*1914"
 
 
     @classmethod
@@ -33,10 +32,12 @@ class ChromeFunctionalTestUser(LiveServerTestCase):
         super().tearDownClass()
 
     def test_user_register_and_login(self):
-        self.selenium.get("http://127.0.0.1:8000/user/register")
-        #user_url = self.live_server_url  
-        #self.selenium.find_elements_by_css_selector("#register-link").click()
+        """User will be register, login and have an acces to home page"""
 
+        # Acces to live server user page
+        self.selenium.get("http://127.0.0.1:8000/user/register")
+
+        # Completing the form for user register
         self.selenium.find_element_by_id("id_username").send_keys(
             self.username
         )
@@ -49,16 +50,18 @@ class ChromeFunctionalTestUser(LiveServerTestCase):
         self.selenium.find_element_by_id("id_password2").send_keys(
             self.password
         )
+        # Submit button for form of user register
         self.selenium.find_element_by_id("button-submit-register").click()
         time.sleep(3)
-
-
+        
+        # Completing the form for user login
         self.selenium.find_element_by_id("id-username").send_keys(
             self.username
         )
         self.selenium.find_element_by_id("id-password").send_keys(
             self.password
         )
+        # Submit button for form of user login
         self.selenium.find_element_by_id("button-submit-login").click()
 
        
