@@ -53,7 +53,7 @@ class ChromeFunctionalTestUser(LiveServerTestCase):
         # Submit button for form of user register
         self.selenium.find_element_by_id("button-submit-register").click()
         time.sleep(3)
-        
+
         # Completing the form for user login
         self.selenium.find_element_by_id("id-username").send_keys(
             self.username
