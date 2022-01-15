@@ -15,35 +15,45 @@ def product(request):
         # User input normalization
         user_request = str(user_request).lower().capitalize()
         # Getting object that contain the name of user input
-        product = Product.objects.filter(product_name__contains=user_request).first()
-            
-        if product is not None:
-            # Getting the substitutes that have the same category that user request input, have better nutriscore.
-            # Ordered by nutriscore and display is limited to 18 products.
-            substitut = Product.objects.filter(category_fk=product.category_fk, \
-                        nutrition_grade__lt=product.nutrition_grade).order_by("nutrition_grade")[:18]
+        product = Product.objects.filter(
+            product_name__contains=user_request).first()
 
-            # Dict that is an charge with data for substitutes products and original user input product
+        if product is not None:
+            # Getting the substitutes that have the same
+            # category that user request input, have better nutriscore.
+            # Ordered by nutriscore and display is limited to 18 products.
+            substitut = Product.objects.filter(
+                category_fk=product.category_fk,
+                nutrition_grade__lt=product.nutrition_grade) \
+                .order_by("nutrition_grade")[:18]
+
+            # Dict that is an charge with data
+            # for substitutes products and original user input product
             context = {"all_products": substitut, "product_request": product}
-            return render(request, 'product/product.html', context )
+            return render(request, 'product/product.html', context)
         else:
             # In case of not existing product send the error message
-            messages.error(request, 'Veuillez refaire la recherche')    
+            messages.error(request, 'Veuillez refaire la recherche')
             return redirect("/")
-    
 
 
 def product_detail(request, id):
-    """Product detail that display the detail information from selected substitut product"""
+    """Product detail that display the detail information
+    from selected substitut product"""
     # Getting informations from selected product
-    product_data = Product.objects.get(id = id)
-    
-    return render(request, 'product/product_detail.html', {'product_data': product_data})
+    product_data = Product.objects.get(id=id)
+
+    return render(
+        request,
+        'product/product_detail.html',
+        {'product_data': product_data})
+
 
 def save_favorite(request):
-    """ Save favorite is able to take selected product and ssave him into Favorite table from database """
-    # Getting actual connected user object 
-    user = User.objects.get(id = request.user.id)
+    """ Save favorite is able to take selected
+    product and ssave him into Favorite table from database """
+    # Getting actual connected user object
+    user = User.objects.get(id=request.user.id)
     # Getting the product id choiced by user
     product_id = request.POST.get('substitute_id')
     # Getting the related product objects

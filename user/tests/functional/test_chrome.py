@@ -3,9 +3,6 @@ import time
 from django.contrib.staticfiles.testing import LiveServerTestCase
 from webdriver_manager.chrome import ChromeDriverManager
 
-from selenium.webdriver.common.keys import Keys
-
-
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
@@ -18,13 +15,12 @@ class ChromeFunctionalTestUser(LiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         """Tests variables and config"""
-        super().setUpClass() 
+        super().setUpClass()
         cls.selenium = webdriver.Chrome(ChromeDriverManager().install())
-        #Create data for test
-        cls.username = "koukou"
-        cls.email = "koukou@gmail.com"
-        cls.password = "Koukou!*1914"
-
+        # Create data for test
+        cls.username = "xouxou"
+        cls.email = "xouxou@gmail.com"
+        cls.password = "Xouxou!*1914"
 
     @classmethod
     def tearDownClass(cls):
@@ -63,8 +59,3 @@ class ChromeFunctionalTestUser(LiveServerTestCase):
         )
         # Submit button for form of user login
         self.selenium.find_element_by_id("button-submit-login").click()
-
-       
-
-
-

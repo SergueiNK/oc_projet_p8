@@ -3,32 +3,40 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 # Create your models here.
 from django.contrib.auth.models import User
-# Create the list of integer in favorite list
-from django.core.validators import int_list_validator
 
 
 class Category(models.Model):
     """Model category, related to product """
-    category_name = models.CharField(_("category name"), unique=True, max_length=500)
+    category_name = models.CharField(
+        _("category name"),
+        unique=True, max_length=500)
+
     def __str__(self):
-        return  (f"{self.category_name}"
+        return (f"{self.category_name}"
                 )
 
-                
+
 class Product(models.Model):
     """Model related to products"""
-    code_product = models.CharField("code of product", unique=True, max_length=500)
-    product_name = models.CharField("name of product", max_length=500)
-    product_description = models.CharField("description of product", max_length=500)
-    url = models.CharField("url of product", max_length=500)
-    nutrition_grade = models.CharField("nutrition grade of product", max_length=500)
+    code_product = models.CharField(
+        "code of product",
+        unique=True, max_length=500)
+    product_name = models.CharField(
+        "name of product", max_length=500)
+    product_description = models.CharField(
+        "description of product", max_length=500)
+    url = models.CharField(
+        "url of product", max_length=500)
+    nutrition_grade = models.CharField(
+        "nutrition grade of product", max_length=500)
     individual_image_url = models.URLField()
     list_image_url = models.URLField()
     image_nutrition_url = models.URLField()
-    category_fk = models.ForeignKey(Category, on_delete=models.PROTECT, default="0")
-    
+    category_fk = models.ForeignKey(
+        Category, on_delete=models.PROTECT, default="0")
+
     def __str__(self):
-        """Return transform object into the string"""    
+        """Return transform object into the string"""
         return (f"{self.code_product}"
                 f"{self.product_name}"
                 f"{self.product_description}"
@@ -43,15 +51,16 @@ class Product(models.Model):
 
 class Favorite(models.Model):
     """Model related to saved favorite product and user corresponding"""
-    product_fk = models.ForeignKey(Product, on_delete=models.PROTECT, default="0")
-    user_fk = models.ForeignKey(User, on_delete=models.PROTECT, default="0")
+    product_fk = models.ForeignKey(
+        Product, on_delete=models.PROTECT, default="0")
+    user_fk = models.ForeignKey(
+        User, on_delete=models.PROTECT, default="0")
+
     class Meta:
         unique_together = ['product_fk', 'user_fk']
 
         def __str__(self):
-            """Return transform object into the string"""    
+            """Return transform object into the string"""
             return (f"{self.product_fk}"
                     f"{self.user_fk}"
                     )
-
-    

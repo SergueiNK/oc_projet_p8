@@ -1,0 +1,11 @@
+The rests of errors after correction: 
+
+Home application: without errors
+
+Product application : 
+
+.\management\commands\download_data.py:89:21: F841 local variable 'e' is assigned to but never used
+
+.\tests\test_views.py:64:9: E722 do not use bare 'except'
+
+User application : without errors

@@ -3,13 +3,14 @@ from .forms import CreateUserForm
 from product.models import Favorite
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-
 from django.contrib import messages
+
 
 @login_required
 def user(request):
     """Display the page of user"""
     return render(request, 'user/user.html')
+
 
 def registerPage(request):
     """Register user page"""
@@ -25,10 +26,11 @@ def registerPage(request):
             # Redirect to user login page
             return redirect('users:login')
         else:
-            # User message 
-            messages.info(request, 'Merci de vous connecter')    
-    context = {'form':form}
+            # User message
+            messages.info(request, 'Merci de vous connecter')
+    context = {'form': form}
     return render(request, 'user/register.html', context)
+
 
 def loginPage(request):
     """Login user page"""
@@ -36,35 +38,45 @@ def loginPage(request):
         # Take user input during login
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(
+            request, username=username, password=password)
         if user is not None:
             # If user exist connection is available
             login(request, user)
             return render(request, 'home/home.html')
         else:
             # Show message in case of error during login
-            messages.info(request, 'Le nom d\'utilisateur OU le mot de passe sont incorrectes')
+            messages.info(
+                request,
+                'Le nom d\'utilisateur OU \
+                 le mot de passe sont incorrectes')
     context = {}
     return render(request, 'user/login.html', context)
+
 
 def logoutUser(request):
     """Logout user function"""
     logout(request)
     return redirect('users:login')
 
+
 @login_required
 def getUser(request):
     """Access user page"""
     return render(request, 'user/user.html')
+
 
 def getFavorite(request):
     """Acces substitute Favorite page"""
     # Take the user current id
     user = request.user.id
     # Take the objects in Favorite model relative the user current id
-    favorite_id = Favorite.objects.filter (user_fk = user)
+    favorite_id = Favorite.objects.filter(user_fk=user)
     # Append all products in user list
-    product_favorite= [] 
+    product_favorite = []
     for product in favorite_id:
-        product_favorite.append(product.product_fk)    
-    return render (request, 'user/favorite_product.html', {"product_favorite": product_favorite})
+        product_favorite.append(product.product_fk)
+    return render(
+        request,
+        'user/favorite_product.html',
+        {"product_favorite": product_favorite})
