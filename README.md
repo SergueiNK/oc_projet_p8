@@ -47,18 +47,34 @@ Develop into branch develop. Thank to change if you want to see the progress wor
 `$ sudo psql -U postgres`
 
 ```psql
-postgres=# CREATE DATABASE purbeurre;
+postgres=# CREATE DATABASE your_database_name;
 postgres=# \q
 ```
+### Connect Django to Postgres project account
+
+`$ cd config/settings`
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'your_database_name',
+        'USER': 'your_username',
+        'PASSWORD': 'your_password',
+        'HOST': '',
+        'PORT': '5432',
+    }
+}
+```
+
 ### Import models to create tables
 
-`$ cd purbeurre/purbeurre_project && python manage.py makemigrations` 
+`$ python manage.py makemigrations` 
 
-`$ cd purbeurre/purbeurre_project && python manage.py migrate` 
+`$ python manage.py migrate` 
 
 ### Import and insert data from API Openfoodsfacts
 
-`$ cd purbeurre/purbeurre_project && python manage.py download_data` 
+`$ python manage.py download_data` 
 
 ### Run server
 
