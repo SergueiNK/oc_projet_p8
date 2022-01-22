@@ -51,7 +51,7 @@ class ChromeFunctionalTestUser(LiveServerTestCase):
         time.sleep(3)
 
         # Completing the form for user login
-        self.selenium.find_element_by_id("id-username").send_keys(
+        self.selenium.find_element_by_id("id-email").send_keys(
             self.username
         )
         self.selenium.find_element_by_id("id-password").send_keys(
