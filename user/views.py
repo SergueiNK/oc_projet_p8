@@ -65,7 +65,7 @@ def getUser(request):
     """Access user page"""
     return render(request, 'user/user.html')
 
-
+@login_required
 def getFavorite(request):
     """Acces substitute Favorite page"""
     # Take the user current id

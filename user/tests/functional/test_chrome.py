@@ -18,9 +18,9 @@ class ChromeFunctionalTestUser(LiveServerTestCase):
         super().setUpClass()
         cls.selenium = webdriver.Chrome(ChromeDriverManager().install())
         # Create data for test
-        cls.username = "xouxou"
-        cls.email = "xouxou@gmail.com"
-        cls.password = "Xouxou!*1914"
+        cls.username = "touxou"
+        cls.email = "touxou@gmail.com"
+        cls.password = "Touxou!*1914"
 
     @classmethod
     def tearDownClass(cls):
